@@ -1,5 +1,6 @@
 package com.example.imageapi_jig_feb1.view.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -36,15 +37,15 @@ class ImageAdapter(
     class ImageViewHolder(private val binding: ItemImageBinding):
         RecyclerView.ViewHolder(binding.root){
 
+        @SuppressLint("SetTextI18n")
         fun bind(image: Image){
             with(binding){
-                idTv.text = image.id.toString()
-                albumIdTv.text = image.url
-                imageTitleTv.text = image.title.toString()
+                idTv.text = "Image ID ${image.id}"
+                albumIdTv.text = "Album ID: ${image.albumId}"
+                imageTitleTv.text = image.title
 
                 Glide.with(urlIv.context)
-                    .load(image.url)
-                    .override(200)
+                    .load("${image.url}.png")
                     .into(urlIv)
 
             }
